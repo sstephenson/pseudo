@@ -1,12 +1,15 @@
-# Pseudo: Authenticate sudo sessions using OS X’s Security dialog
+# Pseudo
+**Authenticate sudo sessions using OS X’s Security dialog**
 
-`Pseudo` uses the OS X Security framework to validate the current
+Pseudo uses the OS X Security framework to validate the current
 user's `sudo` session. Run `pseudo` to prompt the user for his or her
 password using the standard OS X Security dialog. Once authenticated,
 `pseudo` will touch the user's session timestamp in `/var/db/sudo`,
 granting the user or other programs the ability to invoke `sudo`
-without a password for the duration of sudo's <TIMEOUT> period (5
+without a password for the duration of sudo's timeout period (5
 minutes by default).
+
+<img src="http://i.imgur.com/AYKC8nb.png" width="557" height="353">
 
 ## Usage
 
@@ -31,7 +34,7 @@ looks shady to a novice user.
 standard OS X Security dialog. If it succeeds, invoke `sudo` with the
 command you need to run as root.
 
-    pseudo && sudo mkdir -p /my/system/directory || echo "canceled"
+    pseudo && sudo mkdir -p /my/system/directory || echo "canceled" >&2
 
 **Problem**: You have a Mac shell script or command-line utility that
 needs to run several commands as root. Some of the commands may take a
@@ -43,18 +46,20 @@ first time you need to run a command as root. Then fork off `pseudo
 --wait` in the background, which will continue to validate the sudo
 session every 30 seconds while your program runs.
 
-    AUTHENTICATED=""
-    sudo() {
-      if [ -z "$AUTHENTICATED" ]; then
-        pseudo || {
-          echo "canceled" >&2
-          exit 1
-        }
-        AUTHENTICATED=true
-        pseudo --wait &
-      fi
-      /usr/bin/sudo "$@"
+```bash
+AUTHENTICATED=""
+sudo() {
+  if [ -z "$AUTHENTICATED" ]; then
+    pseudo || {
+      echo "canceled" >&2
+      exit 1
     }
+    AUTHENTICATED=true
+    pseudo --wait &
+  fi
+  /usr/bin/sudo "$@"
+}
 
-    sudo /long/running/command
-    sudo /another/long/running/command
+sudo /long/running/command
+sudo /another/long/running/command
+```
