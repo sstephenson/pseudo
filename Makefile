@@ -7,4 +7,4 @@ pseudo.1: pseudo.1.ronn
 	ronn --roff pseudo.1.ronn
 
 clean:
-	rm -f pseudo pseudo.1
+	rm -f pseudo

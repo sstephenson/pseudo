@@ -1,0 +1,29 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "PSEUDO" "1" "February 2013" "" ""
+.
+.SH "NAME"
+\fBpseudo\fR \- authenticate sudo sessions using OS X\'s Security dialog
+.
+.SH "SYNOPSIS"
+\fBpseudo\fR [\-m | \-\-message \fImessage\fR] [\-w | \-\-wait]
+.
+.SH "DESCRIPTION"
+\fBPseudo\fR uses the OS X Security framework to validate the current user\'s \fBsudo\fR session\. Run \fBpseudo\fR to prompt the user for his or her password using the standard OS X Security dialog\. Once authenticated, \fBpseudo\fR will touch the user\'s session timestamp in \fB/var/db/sudo\fR, granting the user or other programs the ability to invoke \fBsudo\fR without a password for the duration of sudo\'s \fITIMEOUT\fR period (5 minutes by default)\.
+.
+.SH "OPTIONS"
+.
+.TP
+\fB\-m\fR, \fB\-\-message\fR=\fImessage\fR
+Specifies the message to display in the authentication dialog\. The default message is "pseudo wants to make changes\."
+.
+.TP
+\fB\-w\fR, \fB\-\-wait\fR
+Tells \fBpseudo\fR to wait in the foreground indefinitely, touching the user\'s session timestamp every 30 seconds\. If the session expires during this time, \fBpseudo\fR exits with a non\-zero status code\.
+.
+.SH "COPYRIGHT"
+Pseudo is Copyright (c) 2013 Sam Stephenson \fIhttp://sstephenson\.us/\fR
+.
+.SH "SEE ALSO"
+sudo(1)
