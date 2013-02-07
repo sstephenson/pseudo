@@ -9,23 +9,28 @@ int main(int argc, char **argv) {
   static struct option options[] = {
     { "help",    no_argument,       NULL, 'h' },
     { "message", required_argument, NULL, 'm' },
+    { "version", no_argument,       NULL, 'v' },
     { "wait",    no_argument,       NULL, 'w' },
     { NULL,      0,                 NULL, 0   }
   };
 
-  while ((o = getopt_long(argc, argv, "hm:w", options, NULL)) != -1) {
+  while ((o = getopt_long(argc, argv, "hm:vw", options, NULL)) != -1) {
     switch (o) {
     case 'h':
-      usage();
+      version(stdout);
+      usage(stdout);
       return 0;
     case 'm':
       message = optarg;
       break;
+    case 'v':
+      version(stdout);
+      return 0;
     case 'w':
       wait = 1;
       break;
     default:
-      usage();
+      usage(stderr);
       return 1;
     }
   }
@@ -53,8 +58,12 @@ int main(int argc, char **argv) {
   return 0;
 }
 
-void usage() {
-  fprintf(stderr, "usage: %s [ -m | --message <message>] [-w | --wait]\n", program_name);
+void version(FILE *file) {
+  fprintf(file, "Pseudo %s\n", PSEUDO_VERSION);
+}
+
+void usage(FILE *file) {
+  fprintf(file, "Usage: %s [ -m | --message <message>] [-w | --wait]\n", program_name);
 }
 
 int verify_sudo_session() {

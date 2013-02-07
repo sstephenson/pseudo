@@ -7,7 +7,10 @@
 #include <string.h>
 #include <unistd.h>
 
-void usage();
+#define PSEUDO_VERSION "1.0.0-pre"
+
+void version(FILE *);
+void usage(FILE *);
 int verify_sudo_session();
 int authenticate_sudo_session(char *);
 int validate_sudo_session();
