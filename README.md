@@ -11,6 +11,11 @@ minutes by default).
 
 <img src="http://i.imgur.com/AYKC8nb.png" width="557" height="353">
 
+## Installation
+
+   make
+   make install [PREFIX=<prefix>]
+
 ## Usage
 
     pseudo [-m | --message <message>] [-w | --wait]
@@ -34,7 +39,9 @@ looks shady to a novice user.
 standard OS X Security dialog. If it succeeds, invoke `sudo` with the
 command you need to run as root.
 
-    pseudo && sudo mkdir -p /my/system/directory || echo "canceled" >&2
+```bash
+pseudo && sudo mkdir -p /my/system/directory || echo "canceled" >&2
+```
 
 **Problem**: You have a Mac shell script or command-line utility that
 needs to run several commands as root. Some of the commands may take a
@@ -63,3 +70,28 @@ sudo() {
 sudo /long/running/command
 sudo /another/long/running/command
 ```
+
+## License
+
+(The MIT License)
+
+Copyright (c) 2013 Sam Stephenson
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
