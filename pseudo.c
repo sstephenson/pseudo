@@ -37,8 +37,10 @@ int main(int argc, char **argv) {
   }
 
   if (wait) {
-    while (getppid() != 1 && validate_sudo_session()) {
-      sleep(30);
+    int count = 0;
+    while (getppid() != 1 && !(count == 0 && !validate_sudo_session())) {
+      count = (count + 1) % 30;
+      sleep(1);
     }
     return 1;
 
