@@ -64,7 +64,7 @@ int authenticate_sudo_session(char *message) {
   char *user = get_user_name();
   char *command = "mkdir -p /var/db/sudo/%s && touch /var/db/sudo/%s";
   snprintf(buf, sizeof(buf), command, user, user);
-  return run_command_with_privileges(message, buf);
+  return run_command_with_privileges(message, buf) == 0;
 }
 
 int validate_sudo_session() {
@@ -120,7 +120,6 @@ int run_command_with_privileges(char *message, char *command) {
   status = AuthorizationFree(authorization_ref, kAuthorizationFlagDestroyRights);
   return 0;
 }
-
 
 void pipe_stream(FILE *src, FILE *dst) {
   char buf[512], size;
