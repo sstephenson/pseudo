@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
 }
 
 void usage() {
-  fprintf(stderr, "usage: %s [-w | --wait] [ -m | --message <message>]\n", program_name);
+  fprintf(stderr, "usage: %s [ -m | --message <message>] [-w | --wait]\n", program_name);
 }
 
 int verify_sudo_session() {
