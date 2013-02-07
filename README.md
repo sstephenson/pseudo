@@ -13,8 +13,8 @@ minutes by default).
 
 ## Installation
 
-   make
-   make install [PREFIX=<prefix>]
+    make
+    make install [PREFIX=<prefix>]
 
 ## Usage
 
