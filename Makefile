@@ -11,8 +11,10 @@ pseudo: pseudo.c pseudo.h
 pseudo.1: pseudo.1.ronn
 	ronn --roff pseudo.1.ronn
 
-install: pseudo pseudo.1
+install: all
+	$(INSTALL) -d $(BINDIR)
 	$(INSTALL) pseudo $(BINDIR)/pseudo
+	$(INSTALL) -d $(MANDIR)/man1
 	$(INSTALL) pseudo.1 $(MANDIR)/man1/pseudo.1
 
 clean:
