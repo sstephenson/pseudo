@@ -7,7 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define PSEUDO_VERSION "1.0.0"
+#define PSEUDO_VERSION "1.1.0"
 
 void version(FILE *);
 void usage(FILE *);

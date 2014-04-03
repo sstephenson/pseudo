@@ -32,7 +32,7 @@ minutes by default).
 
 ## COPYRIGHT
 
-Pseudo is Copyright (c) 2013 Sam Stephenson <http://sstephenson.us/>
+Pseudo is Copyright (c) 2014 Sam Stephenson <http://sstephenson.us/>
 
 ## SEE ALSO
 
