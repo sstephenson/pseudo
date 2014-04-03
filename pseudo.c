@@ -67,7 +67,7 @@ void usage(FILE *file) {
 }
 
 int verify_sudo_session() {
-  return system("/usr/bin/sudo -n /usr/bin/true 2>/dev/null") == 0;
+  return system("/bin/test -z \"$(/usr/bin/sudo -n /usr/bin/true 2>&1)\"") == 0;
 }
 
 int authenticate_sudo_session(char *message) {
